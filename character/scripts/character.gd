@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 var _state_machine
 var _is_attacking: bool = false
+var _min_weapon_damage = 1
+var _max_weapon_damage = 5
 
 @export_category("Variables")
 @export var _move_speed: float = 64.0
@@ -66,4 +68,4 @@ func _on_attack_timer_timeout() -> void:
 
 func _on_attack_area_body_entered(_body) -> void:
 	if _body.is_in_group("enemy"):
-		_body.update_health(randi_range(1, 5)) #argumento é o dano da arma
+		_body.update_health(randi_range(_min_weapon_damage, _max_weapon_damage))
