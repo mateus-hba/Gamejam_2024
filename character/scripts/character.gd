@@ -62,3 +62,8 @@ func _animate() -> void:
 func _on_attack_timer_timeout() -> void:
 	set_physics_process(true)
 	_is_attacking = false
+
+
+func _on_attack_area_body_entered(_body) -> void:
+	if _body.is_in_group("enemy"):
+		_body.update_health(randi_range(1, 5)) #argumento é o dano da arma
