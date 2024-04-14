@@ -1,6 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://e45vlfgim7bx"]
+[gd_scene load_steps=8 format=3 uid="uid://c33ghqubwg23i"]
 
-[ext_resource type="Texture2D" uid="uid://b4c54ubkuqa65" path="res://character/assets/flaming skull design.png" id="1_f5wao"]
+[ext_resource type="Texture2D" uid="uid://d0o5sse1y2klj" path="res://character/assets/flaming skull design.png" id="1_f5wao"]
 
 [sub_resource type="GDScript" id="GDScript_baift"]
 script/source = "extends CharacterBody2D
@@ -33,6 +33,21 @@ func _physics_process(delta):
 	move_and_slide()
 "
 
+[sub_resource type="Animation" id="Animation_58mvb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_mdakn"]
 resource_name = "idle"
 length = 0.6
@@ -48,21 +63,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
-}
-
-[sub_resource type="Animation" id="Animation_58mvb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_owkrs"]
