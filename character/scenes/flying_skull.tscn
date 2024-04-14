@@ -55,9 +55,9 @@ states/Start/position = Vector2(61.3333, 86.2716)
 transitions = ["Start", "idle 2", SubResource("AnimationNodeStateMachineTransition_ix0hh")]
 graph_offset = Vector2(-74, -19)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8cyba"]
-radius = 3.0
-height = 10.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l2yge"]
+radius = 16.0
+height = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1x86m"]
 radius = 61.0082
@@ -89,14 +89,17 @@ anim_player = NodePath("../Animation")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 show_behind_parent = true
 position = Vector2(-1, 0)
-shape = SubResource("CapsuleShape2D_8cyba")
+shape = SubResource("CapsuleShape2D_l2yge")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="DetectionArea" type="Area2D" parent="."]
 collision_layer = 0
 
 [node name="Collision" type="CollisionShape2D" parent="DetectionArea"]
 show_behind_parent = true
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_1x86m")
+debug_color = Color(0.631373, 0.52549, 0.207843, 0.419608)
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

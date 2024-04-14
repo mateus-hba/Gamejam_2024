@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name FlyingSkull
 
 var _player_ref = null
-var _move_speed = 40
+var _move_speed = 10
 
 @export_category("Objects")
 @export var _texture: Sprite2D = null
