@@ -1,2 +1,4 @@
 res://character/scenes/character.tscn
 res://character/scripts/character.gd
+res://character/scenes/flying_skull.tscn
+res://character/scripts/flying_skull.gd

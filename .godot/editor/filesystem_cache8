@@ -3,9 +3,12 @@ ea4bc82a6ad023ab7ee23ee620429895
 icon.svg::CompressedTexture2D::2488020307178098942::1712980780::1712980814::1::::<><>::
 README.md::TextFile::-1::1712983049::0::1::::<><>::
 ::res://character/::1712987602
-::res://character/assets/::1712985872
+::res://character/assets/::1713053759
+flaming skull design.png::CompressedTexture2D::4427900255003913852::1713048858::1713053771::1::::<><>::
 player.png::CompressedTexture2D::535158160167271232::1712985871::1712985872::1::::<><>::
-::res://character/scenes/::1713037293
-character.tscn::PackedScene::3864248056462697758::1713037293::0::1::::<><>::res://character/scripts/character.gd<>uid://hvh8hcvh0s2k::::res://character/assets/player.png
-::res://character/scripts/::1713037605
-character.gd::GDScript::-1::1713037605::0::1::::<>CharacterBody2D<>::
+::res://character/scenes/::1713046762
+character.tscn::PackedScene::3864248056462697758::1713045702::0::1::::<><>::res://character/scripts/character.gd<>uid://hvh8hcvh0s2k::::res://character/assets/player.png
+flying_skull.tscn::PackedScene::342481926639545369::1713046762::0::1::::<><>::uid://b4c54ubkuqa65::::res://character/assets/flaming skull design.png<>res://character/scripts/flying_skull.gd
+::res://character/scripts/::1713047185
+character.gd::GDScript::-1::1713042974::0::1::::<>CharacterBody2D<>::
+flying_skull.gd::GDScript::-1::1713047185::0::1::::FlyingSkull<>CharacterBody2D<>::

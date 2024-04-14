@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=3 uid="uid://e45vlfgim7bx"]
+
+[ext_resource type="Texture2D" uid="uid://b4c54ubkuqa65" path="res://character/assets/flaming skull design.png" id="1_f5wao"]
+
+[sub_resource type="GDScript" id="GDScript_baift"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -400.0
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
+
+
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction = Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+"
+
+[sub_resource type="Animation" id="Animation_mdakn"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.399778),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_58mvb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_owkrs"]
+_data = {
+"RESET": SubResource("Animation_58mvb"),
+"idle": SubResource("Animation_mdakn")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8cyba"]
+radius = 3.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1x86m"]
+radius = 61.0082
+
+[node name="Flying_skull" type="CharacterBody2D" groups=["enemy"]]
+script = SubResource("GDScript_baift")
+
+[node name="Texture" type="Sprite2D" parent="."]
+position = Vector2(5.68434e-14, 5.68434e-14)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_f5wao")
+hframes = 3
+
+[node name="Animation" type="AnimationPlayer" parent="Texture"]
+libraries = {
+"": SubResource("AnimationLibrary_owkrs")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+show_behind_parent = true
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_8cyba")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="DetectionArea"]
+show_behind_parent = true
+shape = SubResource("CircleShape2D_1x86m")
