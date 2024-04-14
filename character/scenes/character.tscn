@@ -834,7 +834,7 @@ states/walk/node = SubResource("AnimationNodeBlendSpace2D_i4878")
 states/walk/position = Vector2(564, 95.3333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tyssw"]
-size = Vector2(12, 14)
+size = Vector2(14, 16)
 
 [node name="Character" type="CharacterBody2D" node_paths=PackedStringArray("_attack_timer", "_animation_tree") groups=["character"]]
 script = ExtResource("1_mi2it")
@@ -881,6 +881,7 @@ shape = SubResource("RectangleShape2D_pxpjv")
 disabled = true
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_mask = 10
 
 [node name="HurtboxCollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 show_behind_parent = true

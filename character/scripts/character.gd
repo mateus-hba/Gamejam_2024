@@ -75,3 +75,4 @@ func _on_attack_area_body_entered(_body) -> void:
 func _on_hurtbox_body_entered(body):
 	if body.is_in_group("enemy"):
 		print("Enemy entered")
+	#elif  body.is_in_group("ameaças"):

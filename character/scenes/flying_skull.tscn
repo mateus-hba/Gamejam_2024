@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c33ghqubwg23i"]
+[gd_scene load_steps=11 format=3 uid="uid://c33ghqubwg23i"]
 
 [ext_resource type="Texture2D" uid="uid://d0o5sse1y2klj" path="res://character/assets/flaming skull design.png" id="1_f5wao"]
 [ext_resource type="Script" path="res://character/scripts/flying_skull.gd" id="1_yx43n"]
@@ -41,6 +41,20 @@ _data = {
 "idle": SubResource("Animation_mdakn")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h45d5"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ix0hh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_a71fn"]
+states/End/position = Vector2(320, 87.4732)
+states/Start/position = Vector2(61.3333, 86.2716)
+"states/idle 2/node" = SubResource("AnimationNodeAnimation_h45d5")
+"states/idle 2/position" = Vector2(206, 87)
+transitions = ["Start", "idle 2", SubResource("AnimationNodeStateMachineTransition_ix0hh")]
+graph_offset = Vector2(-74, -19)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8cyba"]
 radius = 3.0
 height = 10.0
@@ -49,18 +63,28 @@ height = 10.0
 radius = 61.0082
 
 [node name="Flying_skull" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 8
 script = ExtResource("1_yx43n")
 
 [node name="Texture" type="Sprite2D" parent="."]
 position = Vector2(5.68434e-14, 5.68434e-14)
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.125, 0.125)
 texture = ExtResource("1_f5wao")
 hframes = 3
 
-[node name="Animation" type="AnimationPlayer" parent="Texture"]
+[node name="Animation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Texture")
 libraries = {
 "": SubResource("AnimationLibrary_owkrs")
 }
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Texture")
+libraries = {
+"": SubResource("AnimationLibrary_owkrs")
+}
+tree_root = SubResource("AnimationNodeStateMachine_a71fn")
+anim_player = NodePath("../Animation")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 show_behind_parent = true
@@ -68,6 +92,7 @@ position = Vector2(-1, 0)
 shape = SubResource("CapsuleShape2D_8cyba")
 
 [node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="Collision" type="CollisionShape2D" parent="DetectionArea"]
 show_behind_parent = true
