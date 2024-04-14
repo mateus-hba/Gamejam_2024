@@ -69,3 +69,9 @@ func _on_attack_timer_timeout() -> void:
 func _on_attack_area_body_entered(_body) -> void:
 	if _body.is_in_group("enemy"):
 		_body.update_health(randi_range(_min_weapon_damage, _max_weapon_damage))
+
+
+
+func _on_hurtbox_body_entered(body):
+	if body.is_in_group("enemy"):
+		print("Enemy entered")

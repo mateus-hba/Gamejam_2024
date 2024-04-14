@@ -33,3 +33,6 @@ position = Vector2(160, 90)
 curve = SubResource("Curve2D_5jfrb")
 
 [node name="LocalGeracaoTurba" type="PathFollow2D" parent="CaminhoTurba"]
+
+[node name="Flying_skull" parent="." instance=ExtResource("2_lq1en")]
+position = Vector2(104, 64)

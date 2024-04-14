@@ -4,3 +4,4 @@ res://character/scripts/flying_skull.gd
 res://level_test.tscn
 res://levels/scenes/level_test.tscn
 res://levels/scripts/level_test.gd
+res://character/scripts/character.gd

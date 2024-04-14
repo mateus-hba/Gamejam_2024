@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bvb4uown843py"]
+[gd_scene load_steps=36 format=3 uid="uid://bvb4uown843py"]
 
 [ext_resource type="Script" path="res://character/scripts/character.gd" id="1_mi2it"]
 [ext_resource type="Texture2D" uid="uid://hvh8hcvh0s2k" path="res://character/assets/player.png" id="2_phc51"]
@@ -833,6 +833,9 @@ states/idle/position = Vector2(373.333, 96.6667)
 states/walk/node = SubResource("AnimationNodeBlendSpace2D_i4878")
 states/walk/position = Vector2(564, 95.3333)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyssw"]
+size = Vector2(12, 14)
+
 [node name="Character" type="CharacterBody2D" node_paths=PackedStringArray("_attack_timer", "_animation_tree") groups=["character"]]
 script = ExtResource("1_mi2it")
 _attack_timer = NodePath("AttackTimer")
@@ -877,5 +880,14 @@ position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_pxpjv")
 disabled = true
 
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="HurtboxCollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+show_behind_parent = true
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_tyssw")
+debug_color = Color(0.917647, 0.184314, 0.552941, 0.419608)
+
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
