@@ -1,3 +1,6 @@
 res://character/scenes/flying_skull.tscn
 res://character/scenes/character.tscn
 res://character/scripts/flying_skull.gd
+res://level_test.tscn
+res://levels/scenes/level_test.tscn
+res://levels/scripts/level_test.gd
