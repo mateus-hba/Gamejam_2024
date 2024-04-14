@@ -1,37 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c33ghqubwg23i"]
 
 [ext_resource type="Texture2D" uid="uid://d0o5sse1y2klj" path="res://character/assets/flaming skull design.png" id="1_f5wao"]
-
-[sub_resource type="GDScript" id="GDScript_baift"]
-script/source = "extends CharacterBody2D
-
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
-
-
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis(\"ui_left\", \"ui_right\")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	move_and_slide()
-"
+[ext_resource type="Script" path="res://character/scripts/flying_skull.gd" id="1_yx43n"]
 
 [sub_resource type="Animation" id="Animation_58mvb"]
 length = 0.001
@@ -79,7 +49,7 @@ height = 10.0
 radius = 61.0082
 
 [node name="Flying_skull" type="CharacterBody2D" groups=["enemy"]]
-script = SubResource("GDScript_baift")
+script = ExtResource("1_yx43n")
 
 [node name="Texture" type="Sprite2D" parent="."]
 position = Vector2(5.68434e-14, 5.68434e-14)
@@ -102,3 +72,6 @@ shape = SubResource("CapsuleShape2D_8cyba")
 [node name="Collision" type="CollisionShape2D" parent="DetectionArea"]
 show_behind_parent = true
 shape = SubResource("CircleShape2D_1x86m")
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

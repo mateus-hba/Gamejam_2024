@@ -870,7 +870,7 @@ one_shot = true
 
 [node name="DashTimer" type="Timer" parent="."]
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="." groups=["character"]]
 
 [node name="Collision" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(0, 12)
